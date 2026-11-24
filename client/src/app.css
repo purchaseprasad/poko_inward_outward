@@ -1,0 +1,25 @@
+/* additions on top of base.css */
+.cbx{position:relative}
+.cbx input{padding-right:40px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='10'%3E%3Cpath d='M1 1l7 7 7-7' fill='none' stroke='%23788' stroke-width='2.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.cbx-list{position:absolute;left:0;right:0;top:calc(100% + 2px);z-index:60;max-height:290px;overflow-y:auto;background:var(--card);border:2px solid var(--info);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.cbx-it{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;cursor:pointer;border-bottom:1px solid var(--line);font-weight:600}
+.cbx-it small{color:var(--muted);font-weight:500;white-space:nowrap}
+.cbx-it:hover,.cbx-it.on{background:var(--soft)}
+.cbx-add{color:var(--primary);background:var(--soft);position:sticky;bottom:0;border-bottom:0;justify-content:flex-start}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:16px}
+.login-card{width:100%;max-width:420px}
+.login-card .logo{margin:0 auto 12px;width:56px;height:56px;font-size:1.8rem}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs .btn.on{background:var(--primary);border-color:var(--primary);color:var(--ink)}
+.user-chip{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;font-weight:700}
+.user-chip small{font-weight:600}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;background:var(--info-s);color:var(--info);font-size:.78rem;font-weight:800}
+.mini{font-size:.85rem;color:var(--muted)}
+a.lnk{color:var(--info);font-weight:700;text-decoration:none;cursor:pointer}
+a.lnk:hover{text-decoration:underline}
+.res-ok{border-left:5px solid var(--ok)}.res-bad{border-left:5px solid var(--danger)}
+.bline .grid{margin-bottom:6px}
+.sp{height:10px}
+
+a.btn{text-decoration:none;color:inherit}
+a.btn.primary{color:var(--ink)}

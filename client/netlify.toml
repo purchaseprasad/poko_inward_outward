@@ -1,0 +1,18 @@
+# Netlify: set "Base directory" = client in the site settings.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# All /api calls are passed to the Render backend, so the browser only ever talks to Netlify
+# (cookies stay first-party and the links in the e-mails work).
+# If Render gives your API a different address, change the URL on the next line.
+[[redirects]]
+  from = "/api/*"
+  to = "https://poko-inward-outward-api.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

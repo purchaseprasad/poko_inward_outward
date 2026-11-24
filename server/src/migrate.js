@@ -52,10 +52,16 @@ export async function migrate() {
     const n = (await c.query('select count(*)::int n from users')).rows[0].n;
     if (!n) {
       const crypto = await import('node:crypto');
-      const pass = process.env.SEED_PASSWORD || crypto.randomBytes(9).toString('base64url');
-      const email = (process.env.ADMIN_LOGIN_EMAIL || 'admin@pokonut.local').toLowerCase();
+      const pass = (process.env.SEED_PASSWORD || '').trim() || crypto.randomBytes(9).toString('base64url');
+      const email = (process.env.ADMIN_LOGIN_EMAIL || 'admin@pokonut.local').trim().toLowerCase();
       await c.query("insert into users(name,email,password_hash,role) values('Admin',$1,$2,'Admin')", [email, await bcrypt.hash(pass, 10)]);
       console.log(`First Admin created. Login: ${email}` + (process.env.SEED_PASSWORD ? '' : `  Password: ${pass}   (shown only once – log in and change it)`));
+    }
+    /* forgot the Admin login? set RESET_ADMIN=1 together with ADMIN_LOGIN_EMAIL and SEED_PASSWORD, redeploy, log in, then remove RESET_ADMIN */
+    if (process.env.RESET_ADMIN === '1' && (process.env.ADMIN_LOGIN_EMAIL || '').trim() && (process.env.SEED_PASSWORD || '').trim()) {
+      const email = process.env.ADMIN_LOGIN_EMAIL.trim().toLowerCase();
+      await c.query("insert into users(name,email,password_hash,role,active) values('Admin',$1,$2,'Admin',true) on conflict(email) do update set password_hash=excluded.password_hash, role='Admin', active=true", [email, await bcrypt.hash(process.env.SEED_PASSWORD.trim(), 10)]);
+      console.log(`Admin login reset for ${email}. Now remove RESET_ADMIN from the environment variables.`);
     }
   } else {
     const pw = await bcrypt.hash(process.env.SEED_PASSWORD || 'Pokonut@123', 10);

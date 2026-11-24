@@ -27,7 +27,7 @@ That keeps login cookies working and makes the Approve / Reject links in the e-m
    `DATABASE_URL`, `JWT_SECRET` and `NODE_ENV` are set automatically. Never put passwords in GitHub – only in Render.
 3. Wait until the service says **Live**. Check `https://<your-api>.onrender.com/api/health` shows `{"ok":true}`.
    The first start creates all tables, the product / vendor / transporter lists and **one Admin user**.
-4. If the API address Render shows is not `https://poko-inward-outward-api.onrender.com`, edit `client/netlify.toml` (the `to =` line) and push.
+4. If the API address Render shows is not `https://poko-inward-outward.onrender.com`, edit `client/netlify.toml` (the `to =` line) and push.
 
 ## 2. Netlify – website
 1. https://app.netlify.com → **Add new site → Import an existing project** → GitHub → `poko_inward_outward`.

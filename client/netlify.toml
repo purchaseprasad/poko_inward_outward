@@ -8,7 +8,7 @@
 # If Render gives your API a different address, change the URL on the next line.
 [[redirects]]
   from = "/api/*"
-  to = "https://poko-inward-outward-api.onrender.com/api/:splat"
+  to = "https://poko-inward-outward.onrender.com/api/:splat"
   status = 200
   force = true
 
